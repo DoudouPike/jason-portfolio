@@ -4,7 +4,9 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Translatable\Translatable;
 
 /**
  * @ORM\Table(name="projects")
@@ -20,11 +22,13 @@ class Project
     private $id;
 
     /**
+     * @Gedmo\Translatable()
      * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
+     * @Gedmo\Translatable()
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
@@ -48,6 +52,11 @@ class Project
      * @ORM\OneToMany(targetEntity="App\Entity\Link", mappedBy="project_id", orphanRemoval=true)
      */
     private $links;
+
+    /**
+     * @Gedmo\Locale()
+     */
+    private $locale;
 
     public function __construct()
     {
@@ -168,5 +177,10 @@ class Project
         }
 
         return $this;
+    }
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 }
