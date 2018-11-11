@@ -12,7 +12,7 @@ use Gedmo\Translatable\Translatable;
  * @ORM\Table(name="projects")
  * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
  */
-class Project
+class Project implements Translatable
 {
     /**
      * @ORM\Id()

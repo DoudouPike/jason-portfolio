@@ -30,6 +30,7 @@ class ProjectController extends AbstractController
         $project->setDescription('my description in fr');
         $project->setIsFree(true);
         $project->setCreatedAt(new \DateTime());
+        $project->setTranslatableLocale('fr');
         $em->persist($project);
         $em->flush();
     }
@@ -42,11 +43,10 @@ class ProjectController extends AbstractController
     public function update(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
         $project = $em->find('App:Project', $request->get('id'));
         $project->setTitle('my title in en');
         $project->setDescription('my description in en');
-        $project->setTranslatableLocale('en_en');
+        $project->setTranslatableLocale('en');
         $em->persist($project);
         $em->flush();
     }
