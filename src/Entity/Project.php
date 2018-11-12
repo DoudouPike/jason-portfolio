@@ -4,34 +4,23 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Translatable\Translatable;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
  * @ORM\Table(name="projects")
  * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
  */
-class Project implements Translatable
+class Project
 {
+    use ORMBehaviors\Translatable\Translatable;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @Gedmo\Translatable()
-     * @ORM\Column(type="string", length=255)
-     */
-    private $title;
-
-    /**
-     * @Gedmo\Translatable()
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $description;
 
     /**
      * @ORM\Column(type="datetime")
@@ -53,11 +42,6 @@ class Project implements Translatable
      */
     private $links;
 
-    /**
-     * @Gedmo\Locale()
-     */
-    private $locale;
-
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -67,30 +51,6 @@ class Project implements Translatable
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface

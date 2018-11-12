@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProjectController extends AbstractController
 {
     /**
-     * @Route("/project", name="project")
+     * @Route("/projects", name="project")
      */
     public function index()
     {
@@ -26,12 +26,15 @@ class ProjectController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $project = new Project();
-        $project->setTitle('my title in fr');
-        $project->setDescription('my description in fr');
+        $project->translate('fr')->setTitle('my title in fr');
+        $project->translate('fr')->setDescription('my description in fr');
+        $project->translate('en')->setTitle('my title in en');
+        $project->translate('en')->setDescription('my description in en');
         $project->setIsFree(true);
         $project->setCreatedAt(new \DateTime());
-        $project->setTranslatableLocale('fr');
         $em->persist($project);
+
+        $project->mergeNewTranslations();
         $em->flush();
     }
 
@@ -46,8 +49,6 @@ class ProjectController extends AbstractController
         $project = $em->find('App:Project', $request->get('id'));
         $project->setTitle('my title in en');
         $project->setDescription('my description in en');
-        $project->setTranslatableLocale('en');
-        $em->persist($project);
         $em->flush();
     }
 
