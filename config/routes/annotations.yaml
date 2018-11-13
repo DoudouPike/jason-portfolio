@@ -2,7 +2,7 @@ controllers:
     resource: ../../src/Controller/
     type: annotation
     prefix:
-        fr: ''
+        fr: fr
         default: /{_locale}
     requirements:
         _locale: '%app_locales%'
