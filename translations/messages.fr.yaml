@@ -1,3 +1,8 @@
+global:
+    lang:
+        english: anglais
+        french: français
 admin:
+    logout: déconnexion
     menu:
         home: accueil

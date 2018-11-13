@@ -1,3 +1,8 @@
+global:
+    flag:
+        english: english
+        french: french
 admin:
+    logout: logout
     menu:
         home: home
