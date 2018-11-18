@@ -1,9 +1,8 @@
-{% extends 'base-admin.html.twig' %}
+{% extends 'admin/layout.html.twig' %}
 
-{% block title %}{{ 'admin.menu.home'|trans|capitalize }}{% endblock %}
 {% block pagetitle %}{{ 'admin.menu.home'|trans|capitalize }}{% endblock %}
 
-{% block body %}
+{% block adminbody %}
     <section class="no-padding-top no-padding-bottom">
         <div class="container-fluid">
             <div class="row">
@@ -376,4 +375,4 @@
             </div>
         </div>
     </section>
-{% endblock %}
+{% endblock adminbody %}
