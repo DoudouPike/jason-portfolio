@@ -18,10 +18,10 @@ class Image
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="images")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="id")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $project_id;
+    private $project;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -40,14 +40,14 @@ class Image
         return $this->id;
     }
 
-    public function getProjectId(): ?Project
+    public function getProject(): ?Project
     {
-        return $this->project_id;
+        return $this->project;
     }
 
-    public function setProjectId(?Project $project_id): self
+    public function setProject(?Project $project): self
     {
-        $this->project_id = $project_id;
+        $this->project = $project;
 
         return $this;
     }

@@ -33,12 +33,12 @@ class Project
     private $is_free;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="project_id", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="project", orphanRemoval=true)
      */
     private $images;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Link", mappedBy="project_id", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Link", mappedBy="project", orphanRemoval=true)
      */
     private $links;
 
@@ -80,7 +80,7 @@ class Project
     /**
      * @return Collection|Image[]
      */
-    public function getImage(): Collection
+    public function getImages(): Collection
     {
         return $this->images;
     }
@@ -89,7 +89,7 @@ class Project
     {
         if (!$this->images->contains($image)) {
             $this->images[] = $image;
-            $image->setProjectId($this);
+            $image->setProject($this);
         }
 
         return $this;
@@ -100,8 +100,8 @@ class Project
         if ($this->images->contains($image)) {
             $this->images->removeElement($image);
             // set the owning side to null (unless already changed)
-            if ($image->getProjectId() === $this) {
-                $image->setProjectId(null);
+            if ($image->getProject() === $this) {
+                $image->setProject(null);
             }
         }
 
@@ -120,7 +120,7 @@ class Project
     {
         if (!$this->links->contains($link)) {
             $this->links[] = $link;
-            $link->setProjectId($this);
+            $link->setProject($this);
         }
 
         return $this;
@@ -131,8 +131,8 @@ class Project
         if ($this->links->contains($link)) {
             $this->links->removeElement($link);
             // set the owning side to null (unless already changed)
-            if ($link->getProjectId() === $this) {
-                $link->setProjectId(null);
+            if ($link->getProject() === $this) {
+                $link->setProject(null);
             }
         }
 

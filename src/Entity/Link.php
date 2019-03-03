@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Link
 {
     /**
+     * @var int
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -18,17 +20,23 @@ class Link
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="links")
+     * @var Project
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="id")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $project_id;
+    private $project;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $url;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $title;
@@ -38,15 +46,14 @@ class Link
         return $this->id;
     }
 
-    public function getProjectId(): ?Project
+    public function getProject(): ?Project
     {
-        return $this->project_id;
+        return $this->project;
     }
 
-    public function setProjectId(?Project $project_id): self
+    public function setProject(?Project $project): self
     {
-        $this->project_id = $project_id;
-
+        $this->project = $project;
         return $this;
     }
 
@@ -58,7 +65,6 @@ class Link
     public function setUrl(string $url): self
     {
         $this->url = $url;
-
         return $this;
     }
 

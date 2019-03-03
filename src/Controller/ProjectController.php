@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -63,11 +64,6 @@ class ProjectController extends AbstractController
 
         $project = $em->find('App:Project', $request->get('id'));
 
-        dump($project);
-
-        $repository = $em->getRepository('\Gedmo\Translatable\Entity\Translation');
-        $translations = $repository->findTranslations($project);
-
-        dump($translations);
+        dump($project->translate('fr')->getTranslatable());
     }
 }
