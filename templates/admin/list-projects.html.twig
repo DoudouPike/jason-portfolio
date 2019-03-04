@@ -1,4 +1,4 @@
-{% extends 'layout.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Hello {{ controller_name }}!{% endblock %}
 
@@ -9,13 +9,12 @@
 </style>
 
 <div class="example-wrapper">
-    {{ app.request.locale }}
     <h1>Hello {{ controller_name }}! ✅</h1>
 
     This friendly message is coming from:
     <ul>
-        <li>Your controller at <code><a href="{{ 'src/Controller/ProjectController.php'|file_link(0) }}">src/Controller/ProjectController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'templates/project/list-projects.html.twig'|file_link(0) }}">templates/project/index.html.twig</a></code></li>
+        <li>Your controller at <code><a href="{{ 'src/Controller/AdminProjectController.php'|file_link(0) }}">src/Controller/ProjectAdminController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'templates/admin_project/list-projects.html.twig'|file_link(0) }}">templates/project_admin/index.html.twig</a></code></li>
     </ul>
 </div>
 {% endblock %}
